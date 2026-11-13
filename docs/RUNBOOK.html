@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>PCM Agent Hub · Guide d'installation et d'exploitation</title>
+<style>
+  @page { size: A4; margin: 15mm 14mm 18mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #1e293b;
+    font-size: 10pt;
+    line-height: 1.52;
+    background: #ffffff;
+  }
+  h1 {
+    font-size: 20pt;
+    line-height: 1.15;
+    color: #0f172a;
+    margin: 0 0 12px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #1d4ed8;
+    page-break-before: always;
+  }
+  h1.no-break { page-break-before: avoid; }
+  h2 {
+    font-size: 13pt;
+    color: #1d4ed8;
+    margin: 18px 0 6px;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 11pt;
+    color: #0f172a;
+    margin: 14px 0 4px;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  p { margin: 0 0 8px; }
+  ul, ol { margin: 0 0 10px 18px; padding: 0; }
+  li { margin-bottom: 3px; }
+  strong { color: #0f172a; }
+  code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 8.6pt;
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+  pre {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 8.2pt;
+    line-height: 1.42;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #1d4ed8;
+    padding: 8px 10px;
+    margin: 8px 0 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin: 8px 0 12px;
+    page-break-inside: avoid;
+  }
+  th {
+    background: #eff6ff;
+    color: #1e3a8a;
+    text-align: left;
+    padding: 5px 6px;
+    border: 1px solid #dbeafe;
+  }
+  td {
+    padding: 5px 6px;
+    border: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+  .callout {
+    border-left: 3px solid #3b82f6;
+    background: #eff6ff;
+    padding: 8px 10px;
+    margin: 10px 0 12px;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+  .warning { border-left-color: #f59e0b; background: #fffbeb; }
+  .tip { border-left-color: #10b981; background: #ecfdf5; }
+  .danger { border-left-color: #ef4444; background: #fef2f2; }
+  .small { font-size: 8.5pt; color: #64748b; }
+  .kicker {
+    font-size: 9pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #67e8f9;
+    margin: 0 0 12px;
+  }
+  .cover {
+    background: #0b0e14;
+    color: #f1f5f9;
+    margin: -15mm -14mm 0;
+    padding: 28mm 18mm;
+    min-height: 250mm;
+    page-break-after: always;
+  }
+  .cover h1 {
+    border: 0;
+    color: #ffffff;
+    font-size: 34pt;
+    letter-spacing: -1px;
+    margin: 0 0 10px;
+    padding: 0;
+    page-break-before: avoid;
+  }
+  .cover .subtitle {
+    font-size: 16pt;
+    color: #cbd5e1;
+    margin: 0 0 22px;
+  }
+  .cover .lead {
+    font-size: 11pt;
+    color: #94a3b8;
+    line-height: 1.65;
+    max-width: 135mm;
+    margin-bottom: 26px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+  }
+  .cover-meta span {
+    border: 1px solid rgba(148,163,184,.35);
+    background: rgba(255,255,255,.04);
+    color: #cbd5e1;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 9pt;
+  }
+  .cover-note {
+    border-left: 3px solid #22d3ee;
+    background: rgba(34,211,238,.08);
+    color: #a5f3fc;
+    padding: 10px 12px;
+    font-size: 9.5pt;
+    margin-top: 22px;
+    max-width: 135mm;
+  }
+  .cover-flow {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+    max-width: 150mm;
+  }
+  .cover-flow span {
+    border: 1px solid rgba(148,163,184,.25);
+    background: rgba(255,255,255,.03);
+    color: #94a3b8;
+    padding: 5px 9px;
+    border-radius: 7px;
+    font-size: 8.5pt;
+  }
+  .toc-list {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    columns: 2;
+    column-gap: 22px;
+  }
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #dbeafe;
+    font-size: 9.5pt;
+    break-inside: avoid;
+  }
+  .toc-list .num { color: #1d4ed8; font-weight: 700; min-width: 22px; }
+  .toc-list .title { flex: 1; }
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li { padding-left: 20px; position: relative; margin-bottom: 5px; }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid #94a3b8;
+    border-radius: 2px;
+    background: #fff;
+  }
+  .diagram {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0;
+    page-break-inside: avoid;
+    background: #0f131b;
+  }
+  .diagram img { width: 100%; display: block; }
+  .caption { font-size: 8pt; color: #64748b; margin-top: 3px; }
+  .tag {
+    display: inline-block;
+    border: 1px solid #dbeafe;
+    background: #eff6ff;
+    color: #1d4ed8;
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-size: 7.8pt;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .box {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 9px 10px;
+    background: #f8fafc;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+  .box h3 { margin-top: 0; font-size: 10pt; color: #1d4ed8; }
+  .footer-note { margin-top: 20px; padding-top: 8px; border-top: 1px solid #e2e8f0; font-size: 8pt; color: #94a3b8; }
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section class="cover">
+  <p class="kicker">Projet J35 · PCM</p>
+  <h1>PCM Agent Hub</h1>
+  <p class="subtitle">Guide d'installation et d'exploitation locale</p>
+  <p class="lead">
+    Faire tourner la passerelle A2A, les agents spécialisés, le serveur MCP MongoDB
+    et la journalisation Atlas sur une machine Windows, puis vérifier le parcours complet.
+  </p>
+
+  <div class="cover-meta">
+    <span>Version 1.0</span>
+    <span>13 novembre 2026</span>
+    <span>Node.js 20+</span>
+    <span>Windows 10/11</span>
+  </div>
+
+  <div class="cover-flow">
+    <span>Question PCM</span>
+    <span>Fan-out A2A</span>
+    <span>4 agents</span>
+    <span>Critique</span>
+    <span>Révision</span>
+    <span>Réponse finale</span>
+    <span>MCP · Atlas</span>
+  </div>
+
+  <div class="cover-note">
+    Ce guide suppose un accès au projet Langflow J35 et aux collections Astra DB existantes.
+    Les URLs de tunnel et les secrets doivent être remplacés par les vôtres.
+  </div>
+</section>
+
+<!-- ================= TOC ================= -->
+<section>
+  <h1 class="no-break">Sommaire</h1>
+  <ol class="toc-list">
+    <li><span class="num">01</span><span class="title">Vue d'ensemble</span></li>
+    <li><span class="num">02</span><span class="title">Prérequis</span></li>
+    <li><span class="num">03</span><span class="title">Structure du projet</span></li>
+    <li><span class="num">04</span><span class="title">Installation</span></li>
+    <li><span class="num">05</span><span class="title">Configuration .env</span></li>
+    <li><span class="num">06</span><span class="title">Serveur MCP MongoDB</span></li>
+    <li><span class="num">07</span><span class="title">Passerelle A2A</span></li>
+    <li><span class="num">08</span><span class="title">Flows Langflow</span></li>
+    <li><span class="num">09</span><span class="title">Démarrage complet</span></li>
+    <li><span class="num">10</span><span class="title">Tests et vérifications</span></li>
+    <li><span class="num">11</span><span class="title">Dépannage</span></li>
+    <li><span class="num">12</span><span class="title">Exploitation et sécurité</span></li>
+    <li><span class="num">13</span><span class="title">Annexes</span></li>
+  </ol>
+
+  <div class="callout">
+    <strong>Ordre de lecture recommandé :</strong> 01 → 02 → 04 → 05 → 06 → 07 → 08 → 09.
+    Les sections 10 à 13 servent au diagnostic et à l'exploitation quotidienne.
+  </div>
+
+  <div class="callout tip">
+    <strong>Trois commandes seulement pour démarrer :</strong>
+    <code>npm install</code>, <code>npm start</code>, <code>npm run smoke</code>.
+    Le reste du guide explique ce qu'il faut configurer avant.
+  </div>
+</section>
+
+<!-- ================= 1 ================= -->
+<h1>01 · Vue d'ensemble</h1>
+
+<p>
+  Le projet est un <strong>hub d'agents interopérable</strong> pour le PCM.
+  Il aide un opérateur à résoudre une panne de porte palière de quai à distance,
+  à partir de procédures documentées, puis à escalader proprement si la panne dépasse
+  le périmètre de l'utilisateur.
+</p>
+
+<h2>Ce qui tourne où</h2>
+<table>
+  <tr><th>Composant</th><th>Rôle</th><th>Emplacement</th></tr>
+  <tr><td>Passerelle A2A</td><td>Expose les agents en JSON-RPC, sert les AgentCards, journalise</td><td>Votre machine, port 8787</td></tr>
+  <tr><td>Serveur MCP MongoDB</td><td>31 outils MCP, écriture des interactions dans Atlas</td><td>Votre machine, port 3000</td></tr>
+  <tr><td>Flows Langflow</td><td>Agents, RAG Astra, critique, révision</td><td>Instance Langflow (staging ou locale)</td></tr>
+  <tr><td>Astra DB</td><td>Collections <code>pcm_doc</code> et <code>pcm_destributer_doc</code></td><td>Cloud DataStax</td></tr>
+  <tr><td>MongoDB Atlas</td><td>Base <code>pcm_agent</code>, collection <code>interactions</code></td><td>Cloud MongoDB</td></tr>
+  <tr><td>cloudflared</td><td>Expose les ports locaux en HTTPS</td><td>Votre machine</td></tr>
+</table>
+
+<h2>Parcours d'une demande</h2>
+<ol>
+  <li>L'opérateur pose une question dans le Playground ou via l'API A2A.</li>
+  <li>Le flow <code>PCM Agent · Fanout</code> envoie la question aux quatre agents en parallèle.</li>
+  <li>Chaque agent interroge <code>pcm_doc</code> et répond avec ses sources.</li>
+  <li>Les réponses sont combinées, critiquées, puis révisées.</li>
+  <li>La passerelle journalise la question et la réponse dans Atlas via MCP.</li>
+</ol>
+
+<div class="diagram">
+  <img src="workflow-diagram.png" alt="Schéma du workflow PCM">
+</div>
+<p class="caption">Schéma du hub : fan-out A2A, quatre spécialistes, critique, révision, contacts et journalisation MCP.</p>
+
+<div class="callout warning">
+  <strong>Point important :</strong> ce guide fait tourner la <em>passerelle</em> et le <em>serveur MCP</em>
+  sur votre machine, mais les agents restent dans Langflow. Si vous voulez tout héberger localement,
+  il faut aussi installer Langflow, importer les flows et reconfigurer les URLs et les credentials.
+</div>
+
+<!-- ================= 2 ================= -->
+<h1>02 · Prérequis</h1>
+
+<h2>Logiciels</h2>
+<table>
+  <tr><th>Outil</th><th>Version conseillée</th><th>Pourquoi</th></tr>
+  <tr><td>Windows</td><td>10 ou 11</td><td>Les commandes sont en PowerShell</td></tr>
+  <tr><td>Node.js</td><td>20 ou plus (testé en 24)</td><td>Passerelle, scripts, MCP</td></tr>
+  <tr><td>npm</td><td>10 ou plus</td><td>Dépendances et scripts</td></tr>
+  <tr><td>cloudflared</td><td>2025 ou plus</td><td>Deux tunnels HTTPS</td></tr>
+  <tr><td>Python</td><td>3.13 (optionnel)</td><td>Vérifications Atlas et extraction PDF</td></tr>
+  <tr><td>Docker Desktop</td><td>Optionnel</td><td>MongoDB local de secours</td></tr>
+  <tr><td>Navigateur</td><td>Edge ou Chrome</td><td>Langflow, Playground, génération PDF</td></tr>
+</table>
+
+<h2>Accès et credentials</h2>
+<ul class="checklist">
+  <li>Accès au projet Langflow J35 et aux flows listés section 08.</li>
+  <li>Clé OpenRouter, ou crédits free disponibles.</li>
+  <li>Token et endpoint Astra DB déjà configurés dans les flows.</li>
+  <li>Utilisateur MongoDB Atlas avec accès à la base <code>pcm_agent</code>.</li>
+  <li>Votre IP publique autorisée dans Atlas Network Access.</li>
+  <li>Un jeton A2A longue durée, généré localement.</li>
+</ul>
+
+<h2>Ports utilisés</h2>
+<table>
+  <tr><th>Port</th><th>Service</th><th>Exposition</th></tr>
+  <tr><td>8787</td><td>Passerelle A2A</td><td>Locale puis tunnel</td></tr>
+  <tr><td>3000</td><td>Serveur MCP MongoDB</td><td>Locale puis tunnel</td></tr>
+  <tr><td>8899</td><td>Présentation HTML (optionnel)</td><td>Locale</td></tr>
+</table>
+
+<div class="callout tip">
+  <strong>Vérification rapide :</strong>
+  <code>node -v</code>, <code>npm -v</code>, <code>cloudflared --version</code>.
+  Si <code>npx</code> est bloqué par la politique PowerShell, utilisez <code>npx.cmd</code>.
+</div>
+
+<!-- ================= 3 ================= -->
+<h1>03 · Structure du projet</h1>
+
+<pre>pcm-agent-hub/
+├─ src/
+│  ├─ server.js          Passerelle Express, routes A2A et /log
+│  ├─ a2a.js             JSON-RPC, tâches, journal, auto-log, sanitizer
+│  ├─ mcp-logger.js      Client MCP pour insert-many
+│  ├─ langflow.js        Appel des flows, extraction de texte
+│  ├─ registry.js        Définitions et AgentCards des 8 agents
+│  └─ config.js          Lecture du .env
+├─ test/
+│  └─ gateway.test.js    7 tests (A2A, auth, sanitizer)
+├─ scripts/
+│  ├─ smoke.js           Test des agents via A2A
+│  ├─ mcp-test.js        Liste les outils MCP
+│  ├─ mcp-insert-test.js Insertion MCP directe
+│  ├─ atlas-query.py     Compte et lit les interactions Atlas
+│  ├─ export-cards.js    Exporte les AgentCards
+│  └─ render-pdf.js      Génère ce PDF
+├─ docs/
+│  ├─ ARCHITECTURE.md    Schéma et décisions
+│  ├─ GUIDE.md           Guide court
+│  ├─ DEMO.md            Scénarios de démonstration
+│  ├─ MCP.md             Détails MCP et Atlas
+│  ├─ TESTS.md           Résultats des tests
+│  ├─ STATUS.md          État d'avancement
+│  ├─ workflow-diagram.png
+│  ├─ RUNBOOK.html       Source de ce document
+│  └─ RUNBOOK.pdf        Ce PDF
+├─ presentation/         Présentation HTML/CSS/JS
+├─ langflow/             Composants A2A et journalisation
+├─ agent-cards/          Cartes JSON exportées
+├─ logs/                 Journaux locaux
+├─ .env.example
+├─ package.json
+└─ README.md</pre>
+
+<h2>Fichiers à connaître</h2>
+<table>
+  <tr><th>Fichier</th><th>Rôle</th></tr>
+  <tr><td><code>.env</code></td><td>Secrets et IDs de flows. Ne jamais versionner.</td></tr>
+  <tr><td><code>src/server.js</code></td><td>Routes <code>/healthz</code>, <code>/log</code>, <code>/:agentId</code>.</td></tr>
+  <tr><td><code>src/a2a.js</code></td><td>JSON-RPC, auto-log Atlas, anti-placeholder.</td></tr>
+  <tr><td><code>src/registry.js</code></td><td>Ajouter ou renommer un agent.</td></tr>
+  <tr><td><code>logs/a2a-requests.ndjson</code></td><td>Trace de chaque appel A2A et auto-log.</td></tr>
+</table>
+
+<!-- ================= 4 ================= -->
+<h1>04 · Installation</h1>
+
+<h2>4.1 Récupérer le projet</h2>
+<p>Placez le dossier <code>pcm-agent-hub</code> sur la machine, puis ouvrez PowerShell dedans.</p>
+<pre>cd C:\Users\VOTRE_NOM\Documents\pcm-agent-hub
+node -v
+npm -v</pre>
+
+<h2>4.2 Installer les dépendances</h2>
+<pre>npm install</pre>
+<p>
+  Les dépendances principales sont Express, dotenv, le SDK MCP, puppeteer-core (pour ce PDF)
+  et les outils de test. Aucun build frontend n'est nécessaire.
+</p>
+
+<h2>4.3 Créer le fichier de configuration</h2>
+<pre>Copy-Item .env.example .env
+notepad .env</pre>
+<p>Renseignez les variables de la section 05. Le fichier <code>.env</code> ne doit jamais être commité.</p>
+
+<h2>4.4 Vérifier les tests</h2>
+<pre>npm test</pre>
+<p>Attendu : <strong>7 tests passent</strong>, dont le test anti-placeholder.</p>
+
+<h2>4.5 Optionnel : outils Python</h2>
+<pre>py -m pip install pymongo pypdf</pre>
+<p>Utilisé par <code>scripts/atlas-query.py</code> et l'extraction des PDF sources.</p>
+
+<h2>4.6 Optionnel : MongoDB local de secours</h2>
+<pre>docker run -d --name pcm-mongo -p 27017:27017 mongo:7</pre>
+<p>
+  Utilisez ensuite <code>mongodb://127.0.0.1:27017</code> comme chaîne MCP.
+  Les données restent dans le conteneur et disparaissent si vous le supprimez.
+</p>
+
+<!-- ================= 5 ================= -->
+<h1>05 · Configuration .env</h1>
+
+<h2>5.1 Variables</h2>
+<table>
+  <tr><th>Variable</th><th>Exemple</th><th>Rôle</th></tr>
+  <tr><td><code>PORT</code></td><td><code>8787</code></td><td>Port local de la passerelle</td></tr>
+  <tr><td><code>PUBLIC_BASE_URL</code></td><td><code>https://xxx.trycloudflare.com</code></td><td>URL publique de la passerelle, utilisée dans les AgentCards</td></tr>
+  <tr><td><code>LANGFLOW_BASE_URL</code></td><td><code>https://stg-agentic.abafusion.ai</code></td><td>Instance Langflow</td></tr>
+  <tr><td><code>LANGFLOW_API_KEY</code></td><td><code>sk-...</code></td><td>Mode api_key uniquement</td></tr>
+  <tr><td><code>LANGFLOW_RUN_MODE</code></td><td><code>public</code></td><td><code>public</code> sur staging, <code>api_key</code> ailleurs</td></tr>
+  <tr><td><code>LANGFLOW_PUBLIC_USER_ID</code></td><td>UUID utilisateur</td><td>Requis en mode public</td></tr>
+  <tr><td><code>A2A_BEARER_TOKEN</code></td><td>chaîne de 48+ caractères</td><td>Protège les routes A2A et <code>/log</code></td></tr>
+  <tr><td><code>A2A_REQUEST_TIMEOUT_MS</code></td><td><code>60000</code></td><td>Timeout d'un flow</td></tr>
+  <tr><td><code>A2A_RETRY_COUNT</code></td><td><code>1</code></td><td>Nouvel essai sur erreur réseau/5xx</td></tr>
+  <tr><td><code>A2A_LOG_FILE</code></td><td><code>logs/a2a-requests.ndjson</code></td><td>Journal local</td></tr>
+  <tr><td><code>AUTO_LOG_INTERACTIONS</code></td><td><code>true</code></td><td>Journalisation Atlas automatique</td></tr>
+  <tr><td><code>MCP_SERVER_URL</code></td><td><code>https://xxx.trycloudflare.com/mcp</code></td><td>URL publique du serveur MCP</td></tr>
+  <tr><td><code>LANGFLOW_FLOW_ORCHESTRATOR</code></td><td>ID du fan-out</td><td>Flow appelé par la route <code>/orchestrator</code></td></tr>
+  <tr><td><code>LANGFLOW_FLOW_DOCS</code></td><td>ID docs</td><td>Agent Diagnostic</td></tr>
+  <tr><td><code>LANGFLOW_FLOW_EQUIPMENT</code></td><td>ID équipements</td><td>Agent Équipements</td></tr>
+  <tr><td><code>LANGFLOW_FLOW_DEGRADED</code></td><td>ID modes dégradés</td><td>Agent Modes dégradés</td></tr>
+  <tr><td><code>LANGFLOW_FLOW_SUPPORT</code></td><td>ID annuaire</td><td>Agent Annuaire</td></tr>
+  <tr><td><code>LANGFLOW_FLOW_CRITIC</code></td><td>ID critique</td><td>Agent Critique exposé</td></tr>
+  <tr><td><code>LANGFLOW_FLOW_DISTRIBUTOR</code></td><td>ID DAT</td><td>Agent extra Distributeur</td></tr>
+  <tr><td><code>LANGFLOW_FLOW_LOGGER</code></td><td>ID journalisation</td><td>Agent extra Logger</td></tr>
+</table>
+
+<h2>5.2 Générer le jeton A2A</h2>
+<pre>$token = -join ((1..64) | ForEach-Object { '{0:x}' -f (Get-Random -Maximum 16) })
+$token</pre>
+<p>Copiez la valeur dans <code>A2A_BEARER_TOKEN</code>. Ne la partagez pas.</p>
+
+<h2>5.3 Récupérer les IDs de flows</h2>
+<p>Ouvrez chaque flow dans Langflow. L'URL contient l'ID :</p>
+<pre>https://stg-agentic.abafusion.ai/flow/0af4bb34-f6a5-46b5-9340-9fdf91696d91
+                                       └──────────── ID du flow ────────────┘</pre>
+
+<h2>5.4 Exemple de .env</h2>
+<pre>PORT=8787
+PUBLIC_BASE_URL=https://VOTRE-GATEWAY.trycloudflare.com
+
+LANGFLOW_BASE_URL=https://stg-agentic.abafusion.ai
+LANGFLOW_API_KEY=
+LANGFLOW_RUN_MODE=public
+LANGFLOW_PUBLIC_USER_ID=VOTRE-UUID
+
+A2A_BEARER_TOKEN=VOTRE-JETON-LONG
+A2A_REQUEST_TIMEOUT_MS=60000
+A2A_RETRY_COUNT=1
+A2A_LOG_FILE=logs/a2a-requests.ndjson
+AUTO_LOG_INTERACTIONS=true
+
+MCP_SERVER_URL=https://VOTRE-MCP.trycloudflare.com/mcp
+
+LANGFLOW_FLOW_ORCHESTRATOR=...
+LANGFLOW_FLOW_DOCS=...
+LANGFLOW_FLOW_EQUIPMENT=...
+LANGFLOW_FLOW_DEGRADED=...
+LANGFLOW_FLOW_SUPPORT=...
+LANGFLOW_FLOW_CRITIC=...
+LANGFLOW_FLOW_DISTRIBUTOR=...
+LANGFLOW_FLOW_LOGGER=...</pre>
+
+<div class="callout warning">
+  <strong>Mode public :</strong> l'API key Langflow est refusée sur ce staging.
+  La passerelle appelle <code>/api/v1/run/public/{flowId}?user_id=...</code>.
+  Les flows doivent être en <code>access_type: PUBLIC</code>. Toute personne qui connaît
+  l'ID du flow et l'UUID utilisateur peut l'exécuter. Repassez les flows en privé après la démo.
+</div>
+
+<!-- ================= 6 ================= -->
+<h1>06 · Serveur MCP MongoDB</h1>
+
+<h2>6.1 Construire la chaîne Atlas</h2>
+<p>
+  Le DNS SRV peut échouer selon le réseau. Utilisez les trois hôtes directs avec TLS.
+  Le mot de passe doit être encodé : un <code>%</code> littéral devient <code>%25</code>.
+</p>
+<pre>$user = 'VOTRE_UTILISATEUR'
+$pass = 'VOTRE_MOT_DE_PASSE'
+$enc = [uri]::EscapeDataString($pass)
+$hosts = 'HOST1:27017,HOST2:27017,HOST3:27017'
+$env:MDB_MCP_CONNECTION_STRING = "mongodb://${user}:${enc}@${hosts}/?authSource=admin&retryWrites=true&w=majority&tls=true"</pre>
+
+<h2>6.2 Démarrer le serveur</h2>
+<pre>npx.cmd -y mongodb-mcp-server@3.0.4 --transport http --httpHost 127.0.0.1 --httpPort 3000</pre>
+<p>
+  Utilisez <code>127.0.0.1</code> et non <code>localhost</code> : cloudflared résout
+  <code>localhost</code> en IPv6 et le serveur n'écoute qu'en IPv4.
+</p>
+
+<h2>6.3 Ouvrir le tunnel MCP</h2>
+<pre>cloudflared tunnel --url http://127.0.0.1:3000</pre>
+<p>Notez l'URL affichée, puis ajoutez <code>/mcp</code>. Exemple :</p>
+<pre>https://mots-aleatoires.trycloudflare.com/mcp</pre>
+
+<h2>6.4 Enregistrer dans Langflow</h2>
+<p>Settings → MCP Servers → <code>mongodb-atlas-http</code> → remplacer l'URL. Vérifiez :</p>
+<pre>GET /api/v2/mcp/servers?action_count=true
+# attendu : mode=streamable_http, toolsCount=31</pre>
+<p>Si <code>toolsCount</code> vaut <code>null</code>, le tunnel ou le serveur est arrêté, ou l'URL est obsolète.</p>
+
+<h2>6.5 Vérifier localement</h2>
+<pre>$env:MCP_URL='https://VOTRE-MCP.trycloudflare.com/mcp'
+node scripts/mcp-test.js</pre>
+<p>Attendu : <code>tools=31</code> et une connexion <code>preconfigured</code>.</p>
+
+<h2>6.6 Vérifier Atlas</h2>
+<pre>py scripts/atlas-query.py</pre>
+<p>Le script lit <code>pcm_agent.interactions</code> et affiche le dernier document.</p>
+
+<div class="callout tip">
+  <strong>Base locale de secours :</strong>
+  <code>docker start pcm-mongo</code>, puis
+  <code>$env:MDB_MCP_CONNECTION_STRING='mongodb://127.0.0.1:27017'</code>
+  et redémarrez le serveur MCP. Les tools restent les mêmes.
+</div>
+
+<!-- ================= 7 ================= -->
+<h1>07 · Passerelle A2A</h1>
+
+<h2>7.1 Démarrer</h2>
+<pre>npm start</pre>
+<p>Attendu :</p>
+<pre>PCM Agent Hub listening on http://localhost:8787
+- orchestrator: configured
+- docs-agent: configured
+- equipment-agent: configured
+...</pre>
+
+<h2>7.2 Vérifier en local</h2>
+<pre>Invoke-RestMethod http://localhost:8787/healthz | ConvertTo-Json -Depth 4</pre>
+<p>Les 8 agents doivent être <code>configured: true</code>.</p>
+
+<h2>7.3 Ouvrir le tunnel</h2>
+<pre>cloudflared tunnel --url http://localhost:8787</pre>
+<p>Copiez l'URL dans <code>PUBLIC_BASE_URL</code>, puis redémarrez la passerelle :</p>
+<pre># arrêter le processus sur 8787
+Get-NetTCPConnection -LocalPort 8787 -State Listen | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }
+npm start</pre>
+
+<h2>7.4 Régénérer les AgentCards</h2>
+<pre>npm run cards</pre>
+<p>Les fichiers <code>agent-cards/*.json</code> contiennent la nouvelle URL publique.</p>
+
+<h2>7.5 Mettre à jour l'URL dans les flows</h2>
+<p>
+  Le flow <code>PCM Agent · Fanout</code> contient quatre nœuds <code>A2A Call</code>.
+  Pour chacun, remplacez <strong>Hub URL</strong> par la nouvelle URL de la passerelle.
+  Si vous utilisez encore <code>PCM Agent · Hub</code>, mettez aussi à jour ses nœuds
+  <code>A2A Client Tool</code>.
+</p>
+<div class="callout warning">
+  <strong>Trois endroits à mettre à jour</strong> quand un tunnel change :
+  <code>.env</code> (PUBLIC_BASE_URL ou MCP_SERVER_URL), les nœuds A2A dans Langflow,
+  et les AgentCards via <code>npm run cards</code>.
+</div>
+
+<!-- ================= 8 ================= -->
+<h1>08 · Flows Langflow</h1>
+
+<h2>8.1 Les flows du projet</h2>
+<table>
+  <tr><th>Flow</th><th>ID</th><th>Rôle</th></tr>
+  <tr><td>PCM Agent · Fanout</td><td><code>0af4bb34-f6a5-46b5-9340-9fdf91696d91</code></td><td>Orchestration déterministe</td></tr>
+  <tr><td>A2A · Docs</td><td><code>f7eca20d-4b99-4922-9e1d-90923d1c3eb3</code></td><td>Diagnostic, procédures</td></tr>
+  <tr><td>A2A · Equipements</td><td><code>eb1ca679-f9c8-4f9c-a51e-77b2a5bcdb67</code></td><td>EQ-PSD-ALIM, CTRL, OBS</td></tr>
+  <tr><td>A2A · Modes degrades</td><td><code>1dcba96a-3b37-49a9-918b-7276b5deafd4</code></td><td>D1, D2, D3</td></tr>
+  <tr><td>A2A · Annuaire</td><td><code>ee00269b-0f15-4876-97e8-225c27528872</code></td><td>Contacts, horaires</td></tr>
+  <tr><td>A2A · Critique</td><td><code>76faec26-4b83-4efd-a988-1ccc73182c19</code></td><td>Sécurité, ancrage</td></tr>
+  <tr><td>A2A · Distributor</td><td><code>95ca1cfa-0766-4561-862b-46ffcf277251</code></td><td>DAT, monnayeur (extra)</td></tr>
+  <tr><td>A2A · Logger</td><td><code>ee931e9c-8e61-473a-a1b4-4a61319232b7</code></td><td>Journalisation MCP</td></tr>
+</table>
+
+<h2>8.2 Structure du fan-out</h2>
+<ol>
+  <li><strong>Chat Input</strong> reçoit la question.</li>
+  <li>Quatre <strong>A2A Call</strong> appellent Docs, Équipements, Modes dégradés et Annuaire en parallèle.</li>
+  <li>Quatre <strong>Combine Text</strong> assemblent la question et les quatre réponses.</li>
+  <li><strong>Critique</strong> reçoit le texte combiné et renvoie un verdict JSON.</li>
+  <li><strong>Révision</strong> corrige la réponse.</li>
+  <li><strong>Contact Enricher</strong> restaure les numéros exacts si nécessaire.</li>
+  <li><strong>Chat Output</strong> publie la réponse finale.</li>
+</ol>
+
+<h2>8.3 Points à vérifier dans chaque flow</h2>
+<ul>
+  <li>Le flow est en <code>access_type: PUBLIC</code> si la passerelle est en mode public.</li>
+  <li>L'agent a bien l'outil Astra <code>SEARCH_DOCUMENTS</code> sur la bonne collection.</li>
+  <li>Le modèle configuré supporte les outils et répond en français.</li>
+  <li>Le <code>max_tokens</code> reste bas (512 à 1536) pour tenir dans les quotas.</li>
+  <li>Les prompts sont dans <code>docs/prompts/</code> et versionnés avec le projet.</li>
+</ul>
+
+<div class="callout danger">
+  <strong>Session Langflow :</strong> le jeton expire toutes les 20 à 30 minutes.
+  Si les appels API renvoient <code>ACCESS_TOKEN_EXPIRED</code>, ouvrez un nouvel onglet
+  <code>/flows</code> ou reconnectez-vous. La passerelle peut continuer à tourner.
+</div>
+
+<!-- ================= 9 ================= -->
+<h1>09 · Démarrage complet</h1>
+
+<h2>Checklist ordonnée</h2>
+<ol class="checklist">
+  <li>MongoDB Atlas accessible et IP autorisée.</li>
+  <li>Serveur MCP démarré sur le port 3000.</li>
+  <li>Tunnel MCP ouvert, URL notée.</li>
+  <li>URL MCP mise à jour dans Langflow, <code>toolsCount=31</code>.</li>
+  <li>Passerelle démarrée sur le port 8787.</li>
+  <li>Tunnel gateway ouvert, URL notée.</li>
+  <li><code>PUBLIC_BASE_URL</code> mise à jour, passerelle redémarrée.</li>
+  <li>Les 4 nœuds <code>A2A Call</code> du fan-out pointent vers la nouvelle URL.</li>
+  <li><code>npm run cards</code> exécuté.</li>
+  <li><code>/healthz</code> vert, 8 agents configurés.</li>
+  <li><code>npm test</code> vert.</li>
+  <li><code>npm run smoke</code> ou test ciblé.</li>
+</ol>
+
+<h2>Commandes de la session type</h2>
+<pre># Terminal 1 : MCP
+$user='...'; $pass='...'; $enc=[uri]::EscapeDataString($pass)
+$hosts='HOST1:27017,HOST2:27017,HOST3:27017'
+$env:MDB_MCP_CONNECTION_STRING="mongodb://${user}:${enc}@${hosts}/?authSource=admin&retryWrites=true&w=majority&tls=true"
+npx.cmd -y mongodb-mcp-server@3.0.4 --transport http --httpHost 127.0.0.1 --httpPort 3000
+
+# Terminal 2 : tunnel MCP
+cloudflared tunnel --url http://127.0.0.1:3000
+
+# Terminal 3 : passerelle
+npm start
+
+# Terminal 4 : tunnel gateway
+cloudflared tunnel --url http://localhost:8787</pre>
+
+<p>Après avoir noté les deux URLs, mettez à jour <code>.env</code> et les nœuds A2A, puis :</p>
+<pre>npm run cards
+Invoke-RestMethod http://localhost:8787/healthz</pre>
+
+<!-- ================= 10 ================= -->
+<h1>10 · Tests et vérifications</h1>
+
+<h2>10.1 Tests unitaires</h2>
+<pre>npm test</pre>
+<p>Attendu : 7 tests verts (AgentCard, auth, message/send, tasks/get, méthode inconnue, agent inconnu, sanitizer).</p>
+
+<h2>10.2 Test d'un agent</h2>
+<pre>npm run smoke docs-agent
+npm run smoke support-agent
+npm run smoke logger-agent</pre>
+<p>Chaque commande appelle la passerelle publique, qui appelle le flow Langflow.</p>
+
+<h2>10.3 Test de tous les agents</h2>
+<pre>npm run smoke</pre>
+<div class="callout warning">
+  Ce test consomme plusieurs requêtes OpenRouter. Vérifiez le quota free ou vos crédits.
+</div>
+
+<h2>10.4 Appel A2A direct</h2>
+<pre>$token = 'VOTRE_JETON'
+$body = @{
+  jsonrpc='2.0'; id='demo-1'; method='message/send'
+  params=@{ message=@{ kind='message'; messageId='m-1'; role='user'
+    parts=@(@{kind='text'; text="La porte paliere du 2e quai est bloquee ouverte. Que faire ?"}) } }
+} | ConvertTo-Json -Depth 8
+
+Invoke-RestMethod -Method Post -Uri 'http://localhost:8787/orchestrator' `
+  -Headers @{ Authorization="Bearer $token" } `
+  -ContentType 'application/json' -Body $body</pre>
+
+<h2>10.5 Vérifier Atlas</h2>
+<pre>py scripts/atlas-query.py</pre>
+<p>Attendu : un compteur qui augmente après chaque réponse de l'orchestrateur, et un document avec question, answer, source, session_id, created_at.</p>
+
+<h2>10.6 Vérifier les journaux</h2>
+<pre>Get-Content logs/a2a-requests.ndjson -Tail 20</pre>
+<p>Chaque ligne contient l'agent, la durée, le contexte, le statut et, pour l'auto-log, le résultat MCP.</p>
+
+<!-- ================= 11 ================= -->
+<h1>11 · Dépannage</h1>
+
+<table>
+  <tr><th>Symptôme</th><th>Cause probable</th><th>Correction</th></tr>
+  <tr><td><code>ACCESS_TOKEN_EXPIRED</code></td><td>Session Langflow expirée</td><td>Ouvrir un nouvel onglet <code>/flows</code> ou se reconnecter</td></tr>
+  <tr><td><code>402</code> crédits</td><td>Clé OpenRouter épuisée</td><td>Ajouter des crédits ou baisser <code>max_tokens</code></td></tr>
+  <tr><td><code>429 free-models-per-day</code></td><td>Quota gratuit atteint</td><td>Ajouter 10 crédits (1000 req/jour) ou attendre le reset</td></tr>
+  <tr><td><code>Failed to connect via Streamable HTTP</code></td><td>Serveur MCP arrêté ou URL obsolète</td><td>Redémarrer le serveur et le tunnel, PATCH l'URL</td></tr>
+  <tr><td><code>toolsCount: null</code></td><td>Même cause</td><td>Vérifier le tunnel et le port 3000</td></tr>
+  <tr><td><code>bad auth : authentication failed</code></td><td>Mot de passe Atlas invalide ou <code>%</code> mal encodé</td><td>Corriger l'URI, encoder <code>%</code> en <code>%25</code></td></tr>
+  <tr><td><code>A2A_ERROR</code></td><td>Passerelle arrêtée, tunnel mort, jeton invalide</td><td>Vérifier <code>/healthz</code>, le tunnel et le Bearer</td></tr>
+  <tr><td><code>Langflow returned no text output</code></td><td>Réponse vide du fan-out ou du réviseur</td><td>Relancer, vérifier le fallback du Contact Enricher</td></tr>
+  <tr><td><code>ECONNREFUSED</code></td><td>Port non écouté</td><td><code>Get-NetTCPConnection -LocalPort 8787</code></td></tr>
+  <tr><td>Port déjà utilisé</td><td>Ancien processus</td><td><code>Stop-Process -Id ... -Force</code></td></tr>
+  <tr><td><code>npx.ps1 cannot be loaded</code></td><td>Politique PowerShell</td><td>Utiliser <code>npx.cmd</code></td></tr>
+  <tr><td>Tunnel OK puis 404</td><td>URL changée après redémarrage</td><td>Mettre à jour les trois endroits</td></tr>
+  <tr><td>Accents bizarres dans le terminal</td><td>Encodage console</td><td>Ce n'est pas un problème de données</td></tr>
+  <tr><td>Docker <code>engine not ready</code></td><td>Docker Desktop arrêté</td><td>Démarrer Docker Desktop et attendre</td></tr>
+</table>
+
+<h2>11.1 Redémarrer proprement</h2>
+<pre># Passerelle
+Get-NetTCPConnection -LocalPort 8787 -State Listen | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }
+npm start
+
+# MCP
+Get-NetTCPConnection -LocalPort 3000 -State Listen | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }
+# puis relancer npx.cmd ...
+
+# Tunnels
+Get-Process cloudflared | Stop-Process -Force
+# puis relancer les deux cloudflared</pre>
+
+<!-- ================= 12 ================= -->
+<h1>12 · Exploitation et sécurité</h1>
+
+<h2>12.1 Journaux</h2>
+<table>
+  <tr><th>Fichier</th><th>Contenu</th></tr>
+  <tr><td><code>logs/a2a-requests.ndjson</code></td><td>Appels A2A, auto-log, durées, erreurs</td></tr>
+  <tr><td><code>logs/gateway.log</code></td><td>Sortie standard de la passerelle</td></tr>
+  <tr><td><code>logs/mcp-mongodb.log</code></td><td>Sortie du serveur MCP</td></tr>
+  <tr><td><code>logs/cloudflared.log</code></td><td>Tunnel passerelle, URL</td></tr>
+  <tr><td><code>logs/cloudflared-mcp.log</code></td><td>Tunnel MCP, URL</td></tr>
+</table>
+
+<h2>12.2 Sauvegarde</h2>
+<ul>
+  <li>Exporter les flows Langflow (JSON) après chaque changement de prompt.</li>
+  <li>Sauvegarder <code>.env</code> dans un coffre-fort, pas dans Git.</li>
+  <li>Exporter la collection Atlas <code>pcm_agent.interactions</code> si elle sert d'audit.</li>
+  <li>Conserver les AgentCards générées avec la version du code.</li>
+</ul>
+
+<h2>12.3 Sécurité</h2>
+<div class="callout danger">
+  <strong>La configuration de démonstration est publique :</strong>
+  les flows sont en accès public, le tunnel MCP est en écriture et Atlas est joignable.
+  Coupez les tunnels après la démonstration. Ne laissez jamais cette configuration exposée en production.
+</div>
+<ul>
+  <li>Utilisez un utilisateur Atlas dédié, limité à <code>pcm_agent</code>.</li>
+  <li>Générez un <code>A2A_BEARER_TOKEN</code> long et unique.</li>
+  <li>Ne mettez jamais l'URI Atlas ni le mot de passe dans un prompt ou un flow.</li>
+  <li>Repassez les flows en privé et utilisez une clé API acceptée dès que possible.</li>
+  <li>Fermez <code>cloudflared</code> et le conteneur local après usage.</li>
+  <li>Faites tourner les secrets après une démonstration publique.</li>
+</ul>
+
+<!-- ================= 13 ================= -->
+<h1>13 · Annexes</h1>
+
+<h2>13.1 Aide-mémoire</h2>
+<table>
+  <tr><th>Action</th><th>Commande</th></tr>
+  <tr><td>Installer</td><td><code>npm install</code></td></tr>
+  <tr><td>Tester</td><td><code>npm test</code></td></tr>
+  <tr><td>Démarrer</td><td><code>npm start</code></td></tr>
+  <tr><td>Smoke complet</td><td><code>npm run smoke</code></td></tr>
+  <tr><td>Un agent</td><td><code>npm run smoke logger-agent</code></td></tr>
+  <tr><td>Cartes</td><td><code>npm run cards</code></td></tr>
+  <tr><td>Atlas</td><td><code>py scripts/atlas-query.py</code></td></tr>
+  <tr><td>Santé</td><td><code>Invoke-RestMethod http://localhost:8787/healthz</code></td></tr>
+  <tr><td>MCP</td><td><code>node scripts/mcp-test.js</code></td></tr>
+  <tr><td>PDF</td><td><code>node scripts/render-pdf.js</code></td></tr>
+</table>
+
+<h2>13.2 Glossaire</h2>
+<table>
+  <tr><th>Terme</th><th>Définition</th></tr>
+  <tr><td>A2A</td><td>Agent-to-Agent, protocole JSON-RPC pour appeler un agent distant.</td></tr>
+  <tr><td>AgentCard</td><td>Carte de visite JSON d'un agent : nom, description, compétences, endpoint.</td></tr>
+  <tr><td>MCP</td><td>Model Context Protocol, outils exposés à un agent.</td></tr>
+  <tr><td>Agentic RAG</td><td>L'agent choisit ses requêtes, évalue la preuve et relance une recherche.</td></tr>
+  <tr><td>Fan-out</td><td>Appel parallèle de plusieurs agents, puis assemblage.</td></tr>
+  <tr><td>Critique</td><td>Agent qui relit la réponse et renvoie un verdict JSON.</td></tr>
+  <tr><td>Auto-réflexion</td><td>Boucle critique + révision avant la réponse finale.</td></tr>
+</table>
+
+<h2>13.3 Correspondance avec les critères de validation</h2>
+<table>
+  <tr><th>Critère</th><th>Preuve</th></tr>
+  <tr><td>Interopérabilité</td><td>A2A JSON-RPC, MCP 31 outils, AgentCards, journalisation Atlas</td></tr>
+  <tr><td>Agentic RAG</td><td>Agents Astra <code>pcm_doc</code>, reformulation et sources</td></tr>
+  <tr><td>Collaboration</td><td>4 agents appelés en parallèle sur la même demande</td></tr>
+  <tr><td>Auto-réflexion</td><td>Critique JSON + révision + enrichissement des contacts</td></tr>
+  <tr><td>Architecture</td><td><code>docs/ARCHITECTURE.md</code> et schéma du workflow</td></tr>
+  <tr><td>Documentation</td><td>Ce guide + 8 AgentCards + prompts</td></tr>
+  <tr><td>Démonstration</td><td>Présentation HTML/CSS/JS + scénarios de <code>docs/DEMO.md</code></td></tr>
+</table>
+
+<h2>13.4 Limites connues</h2>
+<ul>
+  <li>Le quota gratuit OpenRouter est limité à 50 requêtes par jour.</li>
+  <li>Les modèles gratuits peuvent être lents ou rate-limités.</li>
+  <li>Le flow fan-out dépend de deux tunnels actifs.</li>
+  <li>La collection distributeur couvre le DAT, pas les pièces de porte.</li>
+  <li>L'assistant lit et conseille, il ne commande jamais de pièce.</li>
+</ul>
+
+<h2>13.5 Prochaines étapes</h2>
+<ol>
+  <li>Ingérer les documents des nouvelles familles de maintenance : escaliers mécaniques, portillons, éclairage, ascenseurs.</li>
+  <li>Tester le hub avec des opérateurs non techniques et mesurer les pannes réellement évitées.</li>
+  <li>Repasser les flows en privé, utiliser une clé API acceptée et retirer l'accès public au serveur MCP.</li>
+  <li>Enregistrer la démonstration et archiver les AgentCards avec la version du code.</li>
+</ol>
+
+<div class="callout tip">
+  <strong>Principe directeur :</strong> le hub ne remplace pas l'expert. Il rend accessible
+  ce qui est déjà documenté, il trace ce qui a été fait, et il escalade dès que la sécurité
+  ou le périmètre l'exigent.
+</div>
+
+<p class="footer-note">
+  PCM Agent Hub · Guide d'installation et d'exploitation · Version 1.0 · 13 novembre 2026.
+  Source : <code>docs/RUNBOOK.html</code>. Régénération : <code>node scripts/render-pdf.js</code>.
+</p>
+
+</body>
+</html>

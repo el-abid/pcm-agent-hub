@@ -1,0 +1,58 @@
+[
+  {
+    "id": "orchestrator",
+    "name": "Assistant PCM (Orchestrateur)",
+    "card": "agent-cards/orchestrator.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/orchestrator",
+    "configured": true
+  },
+  {
+    "id": "docs-agent",
+    "name": "Agent Documentation PCM",
+    "card": "agent-cards/docs-agent.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/docs-agent",
+    "configured": true
+  },
+  {
+    "id": "equipment-agent",
+    "name": "Agent Équipements PSD",
+    "card": "agent-cards/equipment-agent.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/equipment-agent",
+    "configured": true
+  },
+  {
+    "id": "degraded-agent",
+    "name": "Agent Modes dégradés PSD",
+    "card": "agent-cards/degraded-agent.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/degraded-agent",
+    "configured": true
+  },
+  {
+    "id": "distributor-agent",
+    "name": "Agent Distributeur DAT",
+    "card": "agent-cards/distributor-agent.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/distributor-agent",
+    "configured": true
+  },
+  {
+    "id": "critic-agent",
+    "name": "Agent Critique PCM",
+    "card": "agent-cards/critic-agent.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/critic-agent",
+    "configured": true
+  },
+  {
+    "id": "logger-agent",
+    "name": "Agent Journalisation PCM",
+    "card": "agent-cards/logger-agent.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/logger-agent",
+    "configured": true
+  },
+  {
+    "id": "support-agent",
+    "name": "Agent Annuaire PCM",
+    "card": "agent-cards/support-agent.json",
+    "url": "https://resident-sheets-blind-parade.trycloudflare.com/support-agent",
+    "configured": true
+  }
+]

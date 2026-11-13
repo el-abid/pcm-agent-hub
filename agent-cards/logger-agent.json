@@ -1,0 +1,58 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Agent Journalisation PCM",
+  "description": "Agent de journalisation. Il enregistre chaque question utilisateur et la réponse finale dans MongoDB via les outils MCP, pour audit et amélioration continue.",
+  "url": "https://resident-sheets-blind-parade.trycloudflare.com/logger-agent",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Abafusion",
+    "url": "https://stg-agentic.abafusion.ai"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "interaction-log",
+      "name": "Journalisation des interactions",
+      "description": "Écrit un document question, réponse, source, date et session dans la collection interactions.",
+      "tags": [
+        "journalisation",
+        "audit",
+        "MCP",
+        "MongoDB"
+      ],
+      "examples": [
+        "Enregistre cette interaction dans MongoDB."
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain"
+      ]
+    }
+  ],
+  "securitySchemes": {
+    "bearer": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "Jeton Bearer partagé avec l'orchestrateur PCM."
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "supportsAuthenticatedExtendedCard": false
+}

@@ -1,0 +1,76 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Agent Critique PCM",
+  "description": "Agent critique. Il relit une réponse proposée, vérifie la sécurité, l'ancrage, la complétude et l'absence de placeholder, puis renvoie un verdict JSON.",
+  "url": "https://resident-sheets-blind-parade.trycloudflare.com/critic-agent",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Abafusion",
+    "url": "https://stg-agentic.abafusion.ai"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "safety-review",
+      "name": "Contrôle sécurité",
+      "description": "Bloque les instructions dangereuses : forcer une porte, neutraliser un verrou, monter sans protection, omettre une escalade.",
+      "tags": [
+        "sécurité",
+        "critique",
+        "safety"
+      ],
+      "examples": [
+        "Faut-il forcer la porte au tournevis ?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "grounding-review",
+      "name": "Contrôle d'ancrage",
+      "description": "Vérifie que chaque procédure, contact et référence est sourcé, et détecte les placeholders.",
+      "tags": [
+        "ancrage",
+        "citation",
+        "placeholder"
+      ],
+      "examples": [
+        "La réponse contient-elle un numéro inventé ?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    }
+  ],
+  "securitySchemes": {
+    "bearer": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "Jeton Bearer partagé avec l'orchestrateur PCM."
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "supportsAuthenticatedExtendedCard": false
+}

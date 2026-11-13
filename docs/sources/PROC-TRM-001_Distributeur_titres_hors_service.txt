@@ -1,0 +1,62 @@
+PROC-TRM-001 : Distributeur automatique de titres hors service
+Base documentaire PCM | Tramway de Casablanca | Version 1.0 | Domaine : Billettique en station | Document fictif de démonstration, à valider avec le règlement
+d'exploitation réel
+1. Périmètre et mots-clés
+[PROC-TRM-001 / §1] Périmètre. Cette procédure s'applique à un distributeur automatique de titres (DAT) d'une station du tramway de
+Casablanca qui ne délivre plus de titre : écran éteint ou figé, message d'erreur, bourrage, impression impossible, paiement refusé. Elle
+décrit les gestes de premier niveau réalisables sur place par un agent habilité, avant l'arrivée du technicien billettique. Hors périmètre :
+valideurs embarqués, application mobile, systèmes de contrôle à bord.
+[PROC-TRM-001 / §1] Mots-clés et synonymes. Distributeur, DAT, borne de vente, automate de titres, billetterie, ticket, titre de transport,
+carte rechargeable, DAT en panne, DAT HS, écran noir, bourrage de monnaie, plus de papier, paiement refusé, terminal de paiement,
+dirhams, station tramway.
+2. Règles de sécurité
+[PROC-TRM-001 / §2, R1] Sûreté. Si le DAT présente des traces d'effraction ou de vandalisme, ou si une personne agressive se trouve
+près de l'automate : ne pas toucher à l'automate, s'éloigner, prévenir immédiatement le PCC et la sûreté.
+[PROC-TRM-001 / §2, R2] Gestes autorisés. Seuls les gestes de cette procédure sont réalisés, sur place, par un agent habilité. Il est
+interdit d'ouvrir le compartiment de caisse (coffre à espèces) ou de manipuler les espèces : cela relève du technicien billettique et de
+l'équipe de collecte.
+[PROC-TRM-001 / §2, R3] Limite de redémarrage. Maximum 2 tentatives de redémarrage local par distributeur, avec 30 secondes
+d'attente entre chaque tentative.
+[PROC-TRM-001 / §2, R4] Sécurité électrique. Ne jamais intervenir sur l'alimentation électrique de l'automate ni sur le câblage. Un DAT
+éteint sans cause visible est signalé au technicien.
+3. Diagnostic pas à pas
+[PROC-TRM-001 / §3, E1] Étape E1, lire l'écran et les voyants. Geste de l'agent : regarder l'écran du DAT (EQ-DAT-LOC) et noter le
+message affiché ou le voyant d'état. Si un message précis est affiché (papier épuisé, bourrage de monnaie, trappe ouverte, paiement
+indisponible) : noter ce message et passer à E2. Si l'écran est éteint : ne pas intervenir sur l'alimentation (R4), appeler directement le
+technicien billettique (§6) et appliquer le mode dégradé D1 ou D2.
+[PROC-TRM-001 / §3, E2] Étape E2, contrôle visuel et gestes simples. Geste de l'agent : vérifier que la porte de service du DAT est
+bien fermée à clé, que le bac à tickets n'est pas vide ni bloqué, et qu'aucun objet n'est coincé dans la fente de monnaie ou de carte. Si le
+papier est épuisé et que l'agent est habilité à remplacer le rouleau : le remplacer avec le rouleau de réserve. Retirer un objet seulement s'il
+est accessible sans outil. Puis passer à E3.
+[PROC-TRM-001 / §3, E3] Étape E3, redémarrage local. Geste de l'agent : actionner le bouton de redémarrage ou la clé de service du
+DAT (EQ-DAT-LOC), attendre 30 secondes et observer le retour de l'écran d'accueil (1re puis 2e tentative). Si l'écran d'accueil revient et
+qu'un titre test s'imprime : informer le PCC, noter l'incident à la main courante et clôturer. Si le DAT reste en erreur après 2 tentatives :
+passer à E4.
+[PROC-TRM-001 / §3, E4] Étape E4, mode dégradé et appel du technicien. Geste de l'agent : poser l'affichage « Distributeur hors
+service » sur le DAT, appliquer le mode dégradé adapté (§4), prévenir le PCC et appeler le technicien d'astreinte billettique (§6) en lui
+donnant le message affiché, les gestes réalisés et le nombre de redémarrages tentés.
+4. Modes dégradés
+[PROC-TRM-001 / §4, D1] Mode dégradé D1, un DAT hors service et un autre DAT disponible dans la station. Mesure : afficher «
+Distributeur hors service » sur l'automate en panne, orienter les voyageurs vers le DAT en état de marche, prévenir le PCC.
+[PROC-TRM-001 / §4, D2] Mode dégradé D2, aucun DAT disponible dans la station. Mesure : prévenir le PCC, informer les voyageurs
+par annonce ou affichage sur la station voisine où un DAT fonctionne, et appliquer la consigne de tolérance de contrôle décidée par le
+PCC.
+[PROC-TRM-001 / §4, D3] Mode dégradé D3, panne de plusieurs stations ou du système de paiement du réseau. Mesure : prévenir
+le PCC pour décision commerciale et d'exploitation (vente à bord, agents de vente mobile, tolérance générale). La décision est prise par le
+PCC.
+5. Équipements concernés
+[PROC-TRM-001 / §5, EQ-DAT-LOC] Distributeur automatique de titres (EQ-DAT-LOC). Automate installé sur le quai. Il comporte
+l'écran, le bouton ou la clé de service, la porte de service, l'imprimante de tickets et la fente de recharge de carte.
+[PROC-TRM-001 / §5, Monnayeur] Monnayeur. Accepte les pièces en dirhams (MAD). Un message de bourrage indique qu'un objet
+bloque la fente ; seul un objet accessible sans outil peut être retiré.
+[PROC-TRM-001 / §5, Terminal de paiement] Terminal de paiement par carte bancaire. Intégré au DAT. Un message « paiement
+indisponible » signale un défaut de communication ; le redémarrage local peut le rétablir (étape E3).
+6. Annuaire d'escalade (numéros fictifs)
+[PROC-TRM-001 / §6, Astreinte billettique] Technicien d'astreinte billettique. À appeler dès l'étape E4, quand le DAT reste en erreur
+après redémarrage, ou dès E1 si l'écran est éteint. Contact : 06 00 00 00 03 (24h/24).
+[PROC-TRM-001 / §6, PCC] PCC (poste de commande centralisé). À appeler en cas de sûreté, de mode dégradé D2 ou D3, de DAT
+remis en service, ou d'impact sur l'exploitation. Contact : poste interne 4000.
+[PROC-TRM-001 / §6, Sûreté] Équipe de sûreté. À appeler via le PCC en cas d'effraction, de vandalisme ou de personne agressive près
+de l'automate. Contact : par le PCC, poste interne 4000.
+[PROC-TRM-001 / §6, Agent de station] Agent de station. À solliciter en renfort pour orienter les voyageurs et poser l'affichage (modes
+dégradés D1 et D2). Contact : radio, canal station.

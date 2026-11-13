@@ -1,0 +1,95 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Agent Distributeur DAT",
+  "description": "Agent spécialisé sur le distributeur automatique de titres (DAT) et le monnayeur. Il identifie les composants, les pannes, les contacts de maintenance et les procédures à partir de la collection pcm_destributer_doc.",
+  "url": "https://resident-sheets-blind-parade.trycloudflare.com/distributor-agent",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Abafusion",
+    "url": "https://stg-agentic.abafusion.ai"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "dat-components",
+      "name": "Composants du DAT",
+      "description": "Identifie les éléments du distributeur automatique de titres : écran, imprimante, fente, porte de service.",
+      "tags": [
+        "DAT",
+        "distributeur",
+        "composants"
+      ],
+      "examples": [
+        "Quels sont les composants du distributeur automatique de titres ?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain"
+      ]
+    },
+    {
+      "id": "monnayeur-faults",
+      "name": "Pannes du monnayeur",
+      "description": "Diagnostique les bourrages et incidents du monnayeur à partir des procédures distributeur.",
+      "tags": [
+        "monnayeur",
+        "bourrage",
+        "panne"
+      ],
+      "examples": [
+        "Le monnayeur indique un bourrage, que faire ?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain"
+      ]
+    },
+    {
+      "id": "maintenance-contacts",
+      "name": "Contacts et conditions de maintenance",
+      "description": "Retrouve le contact du distributeur, les horaires et les conditions d'intervention pour le site concerné.",
+      "tags": [
+        "contact",
+        "maintenance",
+        "SLA"
+      ],
+      "examples": [
+        "Qui contacter pour une intervention sur le DAT du site J35 ?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain"
+      ]
+    }
+  ],
+  "securitySchemes": {
+    "bearer": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "Jeton Bearer partagé avec l'orchestrateur PCM."
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "supportsAuthenticatedExtendedCard": false
+}

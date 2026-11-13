@@ -1,0 +1,59 @@
+Assistant virtuel du PCM 
+Explication simple du projet : Hub d'agents interopérable 
+L'idée en une phrase 
+Un assistant qui aide l'agent du poste de commande maintenance (PCM) à résoudre une panne à distance, 
+en lui indiquant quoi faire étape par étape, à partir des procédures de l'entreprise. 
+Une image pour comprendre 
+Imaginez un collègue expérimenté qui connaît par cœur toutes les procédures. L'agent lui dit : « La porte 
+palière est bloquée à la station X. » Le collègue répond : 
+1. « Vérifie d'abord l'alimentation de la porte. » 
+2. « Ça n'a pas marché ? Essaie un réarmement à distance. » 
+3. « Toujours rien ? Passe en mode dégradé et appelle le technicien d'astreinte. » 
+Notre projet, c'est ce collègue, mais en version IA. 
+Le problème qu'on résout 
+• Les procédures sont longues et dispersées. 
+• Seuls les agents expérimentés les connaissent bien. 
+• Résultat : des pannes qu'on aurait pu régler à distance partent en intervention sur le terrain, ce qui 
+fait perdre du temps. 
+Comment ça marche : une équipe de 5 agents 
+Chaque agent a un seul métier, comme dans une petite équipe : 
+Agent Son métier 
+Diagnostic Trouve la bonne procédure et propose les étapes 
+Équipements Dit quoi vérifier et sur quel appareil 
+Modes dégradés Propose la solution de secours quand la panne persiste 
+Annuaire Dit qui appeler (astreinte, PCC) 
+Critique Relit la réponse avant de l'envoyer et corrige les erreurs 
+Un chef d'orchestre (l'orchestrateur) reçoit la demande, la distribue aux agents et rassemble leurs 
+réponses. 
+Les mots techniques, traduits 
+Terme du cahier des charges En simple 
+MCP La « prise » qui permet à un agent de lire des données (procédures, 
+équipements, annuaire) 
+A2A La façon dont les agents se parlent entre eux 
+AgentCard La « carte de visite » d'un agent : son nom, ce qu'il sait faire 
+Terme du cahier des charges En simple 
+Agentic RAG L'agent cherche dans les procédures, et s'il ne trouve pas, il reformule sa 
+recherche au lieu d'abandonner 
+Auto-réflexion L'agent Critique relit et vérifie avant de répondre 
+Hub interopérable L'ensemble : des agents qui communiquent entre eux avec des standards 
+communs 
+Ce qui rend le projet fiable 
+• Rien n'est inventé : chaque conseil indique de quelle procédure il vient. 
+• Si la procédure n'existe pas, l'assistant le dit et recommande d'escalader plutôt que de deviner. 
+• L'assistant ne commande rien : il lit seulement des documents. L'agent humain décide toujours. 
+• Tout fonctionne sans Internet, sur place, avec une IA installée en local. 
+Ce qu'il faudra livrer 
+Les 7 critères de validation, traduits en preuves concrètes : 
+Critère Ce que vous montrez 
+Interopérabilité Les agents et les outils communiquent 
+Agentic RAG L'agent qui reformule sa recherche 
+Collaboration Au moins 2 agents (ici 4) sur la même panne 
+Auto-réflexion Le brouillon, la critique, puis la version finale 
+Architecture Un schéma de l'ensemble 
+Documentation Un guide et les cartes des agents 
+Démonstration Une démo en direct et une vidéo 
+La démo en une histoire 
+« Porte bloquée en heure de pointe » → l'assistant propose des vérifications → l'agent dit « ça n'a pas 
+marché » → l'assistant passe au mode dégradé et indique qui appeler → on termine par un cas sans 
+procédure où l'assistant refuse poliment de deviner. 
+ 

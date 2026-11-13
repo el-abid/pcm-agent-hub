@@ -1,0 +1,59 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Agent Modes dégradés PSD",
+  "description": "Agent modes dégradés. Il applique D1, D2 ou D3 selon l'état de la porte, précise les mesures, qui décide et quand escalader au PCC.",
+  "url": "https://resident-sheets-blind-parade.trycloudflare.com/degraded-agent",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Abafusion",
+    "url": "https://stg-agentic.abafusion.ai"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "degraded-mode",
+      "name": "Mode dégradé PSD",
+      "description": "Choisit entre D1, D2 et D3, décrit les mesures et la décision d'exploitation.",
+      "tags": [
+        "mode dégradé",
+        "D1",
+        "D2",
+        "D3",
+        "PCC"
+      ],
+      "examples": [
+        "Quand appliquer D2 et qui décide ?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain"
+      ]
+    }
+  ],
+  "securitySchemes": {
+    "bearer": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "Jeton Bearer partagé avec l'orchestrateur PCM."
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "supportsAuthenticatedExtendedCard": false
+}

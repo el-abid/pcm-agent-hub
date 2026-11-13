@@ -1,0 +1,26 @@
+{
+  "name": "pcm-agent-hub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A2A gateway exposing the PCM specialist agents as interoperable remote agents",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test test/gateway.test.js",
+    "smoke": "node scripts/smoke.js",
+    "pdf": "node scripts/render-pdf.js docs/RUNBOOK.html docs/RUNBOOK.pdf \"PCM Agent Hub · Guide d'installation et d'exploitation\"",
+    "pdf:a2a": "node scripts/render-pdf.js docs/A2A-EXPLICATION.html docs/A2A-EXPLICATION.pdf \"PCM Agent Hub · A2A expliqué simplement\"",
+    "cards": "node scripts/export-cards.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "puppeteer-core": "^25.17.0",
+    "zod": "^4.6.7"
+  }
+}

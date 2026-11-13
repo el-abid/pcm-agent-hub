@@ -1,0 +1,51 @@
+PROC-PAL-001 : Porte palière bloquée ou non fermée
+Base documentaire PCM | Version 2.1 | Domaine : Équipements de quai | Document fictif de démonstration, à valider avec le règlement d'exploitation réel
+1. Périmètre et mots-clés
+[PROC-PAL-001 / §1] Périmètre. Cette procédure s'applique à une porte palière (PSD, porte de quai) qui ne se ferme pas, ne se verrouille
+pas ou reste bloquée, en station, avec ou sans train à quai. Hors périmètre : portes embarquées du train, ascenseurs, escaliers
+mécaniques, portillons.
+[PROC-PAL-001 / §1] Mots-clés et synonymes. Porte palière, porte de quai, PSD, porte bloquée, porte ouverte, défaut de fermeture,
+défaut de verrouillage, porte non verrouillée, porte HS, porte qui ne ferme pas, obstacle porte, heure de pointe.
+2. Règles de sécurité
+[PROC-PAL-001 / §2, R1] Priorité voyageurs. La sécurité des voyageurs est prioritaire. Si une porte reste ouverte avec un risque de
+chute sur la voie, ou si un voyageur est signalé sur la voie : escalade immédiate au PCC, sans diagnostic préalable.
+[PROC-PAL-001 / §2, R2] Exécution des commandes. Les commandes (réarmement, condamnation) sont exécutées par l'agent PCM ou
+le personnel habilité.
+[PROC-PAL-001 / §2, R3] Limite de réarmement. Maximum 2 tentatives de réarmement à distance par porte, avec 30 secondes d'attente
+entre chaque tentative.
+3. Diagnostic pas à pas
+[PROC-PAL-001 / §3, E1] Étape E1, vérifier l'alimentation de la porte. Action de l'agent PCM : contrôler sur le synoptique de station le
+voyant d'alimentation OK et l'absence d'alarme tension. Équipement : armoire d'alimentation PSD (EQ-PSD-ALIM). Si l'alimentation est
+présente : passer à E2. Si l'alimentation est absente : appeler l'astreinte électricité (§6), puis appliquer le mode dégradé D1.
+[PROC-PAL-001 / §3, E2] Étape E2, identifier le code défaut. Action de l'agent PCM : lire le code défaut dans le journal des défauts
+(obstacle, fin de course, verrouillage, communication). Équipement : contrôleur de porte (EQ-PSD-CTRL). Si la cause est identifiée : passer
+à E3. Si le défaut est de type communication, le réarmement est impossible : passer à E4.
+[PROC-PAL-001 / §3, E3] Étape E3, réarmement à distance. Action de l'agent PCM : lancer un réarmement de la porte (1re puis 2e
+tentative, 30 secondes d'attente entre les deux). Équipement : commande de réarmement PSD, exécutée par l'agent humain. Si la porte
+est fermée et verrouillée : clôturer et noter l'incident à la main courante. Si la porte est toujours bloquée après 2 tentatives : passer à E4.
+[PROC-PAL-001 / §3, E4] Étape E4, mode dégradé et appel du technicien. Action de l'agent PCM : appliquer le mode dégradé adapté
+(§4) et prévenir le technicien d'astreinte maintenance (§6). Si une seule porte est concernée : surveiller jusqu'à l'arrivée du technicien. Si
+plusieurs portes sont touchées ou si le quai est inutilisable : appliquer D3 et prévenir le PCC.
+4. Modes dégradés
+[PROC-PAL-001 / §4, D1] Mode dégradé D1, porte fermée et verrouillée mais inutilisable (défaut d'alimentation ou de commande).
+Mesure : condamner la porte par verrouillage manuel, afficher l'information voyageurs, maintenir la desserte des autres portes.
+[PROC-PAL-001 / §4, D2] Mode dégradé D2, porte ouverte ou non verrouillable, train non à quai. Mesure : demander à l'agent de
+station de sécuriser la zone avec une barrière physique, informer le PCC, limiter l'accès au quai concerné.
+[PROC-PAL-001 / §4, D3] Mode dégradé D3, plusieurs portes en défaut ou quai non sécurisable. Mesure : escalade au PCC pour
+décision d'exploitation (non-desserte ou passage sans arrêt de la station). La décision est prise par le PCC.
+5. Équipements concernés
+[PROC-PAL-001 / §5, EQ-PSD-ALIM] Armoire d'alimentation PSD (EQ-PSD-ALIM). Alimente les portes du quai. Points de contrôle :
+voyant alimentation, alarme tension sur le synoptique.
+[PROC-PAL-001 / §5, EQ-PSD-CTRL] Contrôleur de porte (EQ-PSD-CTRL). Gère l'ouverture, la fermeture et le verrouillage. Points de
+contrôle : code défaut, état fermé et verrouillé.
+[PROC-PAL-001 / §5, EQ-PSD-OBS] Capteur d'obstacle (EQ-PSD-OBS). Détecte un objet dans la porte. Points de contrôle : alarme
+obstacle, vérification par caméra de quai.
+6. Annuaire d'escalade (numéros fictifs)
+[PROC-PAL-001 / §6, Astreinte maintenance] Technicien d'astreinte maintenance. À appeler dès l'étape E4, quand la porte est toujours
+bloquée après réarmement. Contact : 06 00 00 00 01 (24h/24).
+[PROC-PAL-001 / §6, Astreinte électricité] Astreinte électricité. À appeler quand l'alimentation PSD est absente (étape E1). Contact : 06
+00 00 00 02 (24h/24).
+[PROC-PAL-001 / §6, PCC] PCC (poste de commande centralisé). À appeler en cas de risque voyageur, de mode dégradé D2 ou D3, ou
+d'impact sur l'exploitation. Contact : poste interne 4000.
+[PROC-PAL-001 / §6, Agent de station] Agent de station. À solliciter pour sécuriser le quai et condamner manuellement une porte (modes
+dégradés D1 et D2). Contact : radio, canal station.
