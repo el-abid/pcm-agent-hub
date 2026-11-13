@@ -38,7 +38,7 @@ GET /api/v2/mcp/servers?action_count=true
 Le DNS SRV expire sur ce réseau. Utiliser les trois hôtes directs avec TLS :
 
 ```powershell
-$user = 'marelabid_db_user'
+$user = 'VOTRE_UTILISATEUR'
 $pass = 'le mot de passe'
 $enc = [uri]::EscapeDataString($pass)   # % devient %25
 $hosts = 'ac-7pa0fcv-shard-00-00.rpvrk0r.mongodb.net:27017,ac-7pa0fcv-shard-00-01.rpvrk0r.mongodb.net:27017,ac-7pa0fcv-shard-00-02.rpvrk0r.mongodb.net:27017'
